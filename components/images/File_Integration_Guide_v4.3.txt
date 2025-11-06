@@ -1,0 +1,21 @@
+Hero
+-----------------------------------
+FileNames   = 	image01.png
+		image02.png
+		image03.png
+
+Resolution  = 	220x180 px
+
+
+AboutUs
+-----------------------------------
+FileNames   = 	N/A
+
+Resolution  = 	N/A
+
+
+N/A
+-----------------------------------
+FileNames   = 	N/A
+
+Resolution  = 	N/A
