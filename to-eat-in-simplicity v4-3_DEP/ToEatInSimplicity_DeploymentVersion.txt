@@ -1,0 +1,27 @@
+Hero
+-----------------------------------
+FileNames   = 	image01.png
+		image02.png
+		image03.png
+
+Resolution  = 	220x180 px
+
+
+Images Utilization
+-----------------------------------
+FileNames   = 	imageGrid000XX [00001 - 00022]
+
+Resolution  = 	N/A
+
+
+Logo
+-----------------------------------
+FileNames   = 	logoTEIS.png
+
+Resolution  = 	uniform square (max: 400x400 px)
+
+Background 
+-----------------------------------
+FileNames   = 	backgroundHero.png
+
+Resolution  = 	full wide large
