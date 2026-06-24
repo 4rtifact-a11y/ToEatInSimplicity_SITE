@@ -97,10 +97,9 @@
         },
       }
     </script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <link rel="stylesheet" href="/index.css">
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
 </head>
   <body>
     <div id="root"></div>
@@ -1067,6 +1066,16 @@
       document.body.classList.add('loaded');
 
     </script>
-  <script type="module" src="/index.tsx"></script>
+    <!-- Filet de sécurité : révèle la page même si le script Babel échoue à se charger/exécuter -->
+    <script>
+      (function () {
+        // Si après 4s le rendu React n'a pas eu lieu, on affiche au moins la page
+        setTimeout(function () {
+          if (!document.body.classList.contains('loaded')) {
+            document.body.classList.add('loaded');
+          }
+        }, 4000);
+      })();
+    </script>
 </body>
 </html>
