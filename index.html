@@ -6,7 +6,7 @@
     <title>To Eat In Simplicity - Food Trucks & Remorques</title>
     <meta
       name="description"
-      content="To Eat In Simplicity conçoit et propose des food trucks et remorques modernes pour la restauration mobile."
+      content="To Eat In Simplicity propose des solutions modernes de restauration mobile : locations, ventes, partenariats et accompagnement de projet."
     />
     <link rel="icon" type="image/png" href="images/logoTEIS.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,35 +44,62 @@
       body {
         margin: 0;
         font-family: 'Poppins', sans-serif;
-        background: #f8f9fa;
+        background: linear-gradient(180deg, #fdfdf8 0%, #f8f9fa 100%);
         color: #333333;
       }
       .hero-overlay {
-        background: linear-gradient(135deg, rgba(51, 51, 51, 0.8), rgba(106, 152, 94, 0.75));
+        background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(106, 152, 94, 0.72));
       }
-      .section-card {
-        background: rgba(255,255,255,0.9);
+      .glass-card {
+        background: rgba(255, 255, 255, 0.78);
         backdrop-filter: blur(10px);
-        box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .floaty {
+        animation: floaty 4s ease-in-out infinite;
+      }
+      @keyframes floaty {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .hover-rise {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .hover-rise:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
       }
     </style>
   </head>
   <body class="min-h-screen bg-brand-light text-brand-dark">
     <header class="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-lg">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <a href="#home" class="flex items-center gap-3">
           <img src="images/logoTEIS.png" alt="Logo To Eat In Simplicity" class="h-10 w-10 object-contain" />
           <span class="text-lg font-bold text-brand-dark">To Eat In Simplicity</span>
         </a>
         <nav class="hidden items-center gap-6 md:flex">
-          <a href="#home" class="font-medium text-brand-dark hover:text-brand-green">Accueil</a>
-          <a href="#location" class="font-medium text-brand-dark hover:text-brand-green">Locations</a>
-          <a href="#vente" class="font-medium text-brand-dark hover:text-brand-green">Ventes</a>
-          <a href="#partenariat" class="font-medium text-brand-dark hover:text-brand-green">Partenariats</a>
-          <a href="#agence" class="font-medium text-brand-dark hover:text-brand-green">Agence</a>
-          <a href="#contact" class="rounded-full bg-brand-green px-4 py-2 font-semibold text-white">Contact</a>
+          <a href="#home" class="font-medium text-brand-dark transition hover:text-brand-green">Accueil</a>
+          <a href="#solutions" class="font-medium text-brand-dark transition hover:text-brand-green">Solutions</a>
+          <a href="#about" class="font-medium text-brand-dark transition hover:text-brand-green">À propos</a>
+          <a href="#gallery" class="font-medium text-brand-dark transition hover:text-brand-green">Galerie</a>
+          <a href="#contact" class="rounded-full bg-brand-green px-4 py-2 font-semibold text-white transition hover:opacity-90">Contact</a>
         </nav>
-        <button id="menuButton" class="rounded-md border border-brand-dark/20 p-2 text-brand-dark md:hidden" aria-label="Ouvrir le menu">
+        <button id="menuButton" class="rounded-md border border-brand-dark/20 p-2 text-brand-dark md:hidden" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -81,10 +108,9 @@
       <div id="mobileMenu" class="hidden border-t border-black/5 bg-white px-6 py-4 md:hidden">
         <div class="flex flex-col gap-3">
           <a href="#home" class="font-medium text-brand-dark">Accueil</a>
-          <a href="#location" class="font-medium text-brand-dark">Locations</a>
-          <a href="#vente" class="font-medium text-brand-dark">Ventes</a>
-          <a href="#partenariat" class="font-medium text-brand-dark">Partenariats</a>
-          <a href="#agence" class="font-medium text-brand-dark">Agence</a>
+          <a href="#solutions" class="font-medium text-brand-dark">Solutions</a>
+          <a href="#about" class="font-medium text-brand-dark">À propos</a>
+          <a href="#gallery" class="font-medium text-brand-dark">Galerie</a>
           <a href="#contact" class="rounded-full bg-brand-green px-4 py-2 text-center font-semibold text-white">Contact</a>
         </div>
       </div>
@@ -96,115 +122,174 @@
           <img src="images/backgroundHero.png" alt="Food truck moderne" class="h-full w-full object-cover" onerror="this.style.display='none'" />
           <div class="hero-overlay absolute inset-0"></div>
         </div>
-        <div class="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-6 py-24 text-center">
-          <div class="mb-6 flex h-24 w-24 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-sm">
+        <div class="relative mx-auto flex min-h-[88vh] max-w-7xl flex-col items-center justify-center px-6 py-24 text-center lg:px-8">
+          <div class="floaty mb-6 flex h-24 w-24 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-sm">
             <img src="images/logoTEIS.png" alt="Logo To Eat In Simplicity" class="h-16 w-16 object-contain" />
           </div>
-          <h1 class="mb-4 max-w-4xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
-            La restauration mobile réinventée.
+          <p class="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-brand-yellow">Restauration mobile & solutions sur mesure</p>
+          <h1 class="mb-5 max-w-4xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
+            Des food trucks modernes pour des projets qui prennent de la hauteur.
           </h1>
-          <p class="mb-6 max-w-3xl text-lg text-slate-200 sm:text-xl">
-            Des food trucks modernes et performants, disponibles à la location, à la vente et au travers de partenariats solides.
+          <p class="mb-8 max-w-3xl text-lg text-slate-200 sm:text-xl">
+            To Eat In Simplicity accompagne les restaurateurs, investisseurs et entrepreneurs dans la création d’un espace mobile performant, esthétique et prêt à convertir.
           </p>
-          <p class="font-handwriting text-2xl text-brand-yellow sm:text-3xl">
-            Location, Vente, Partenariats & Agence de Vente
-          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="#solutions" class="rounded-full bg-brand-yellow px-6 py-3 font-semibold text-brand-dark transition hover:opacity-90">Découvrir les solutions</a>
+            <a href="#contact" class="rounded-full border border-white/30 px-6 py-3 font-semibold text-white transition hover:bg-white/10">Prendre contact</a>
+          </div>
+          <div class="mt-10 grid w-full max-w-5xl gap-4 md:grid-cols-3">
+            <div class="glass-card rounded-2xl p-5 text-left">
+              <p class="text-3xl font-bold text-brand-green">3+</p>
+              <p class="mt-2 text-sm text-brand-dark/70">solutions clés en main</p>
+            </div>
+            <div class="glass-card rounded-2xl p-5 text-left">
+              <p class="text-3xl font-bold text-brand-green">100%</p>
+              <p class="mt-2 text-sm text-brand-dark/70">orienté expérience client</p>
+            </div>
+            <div class="glass-card rounded-2xl p-5 text-left">
+              <p class="text-3xl font-bold text-brand-green">24/7</p>
+              <p class="mt-2 text-sm text-brand-dark/70">accompagnement de projet</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="mx-auto max-w-7xl px-6 py-16">
-        <div class="grid gap-8 lg:grid-cols-3">
-          <article class="section-card rounded-3xl p-8">
-            <h2 class="mb-3 text-2xl font-bold text-brand-dark">Locations</h2>
-            <p class="leading-7 text-brand-dark/80">
-              Des solutions de location adaptées aux restaurateurs et événements qui veulent une présence mobile élégante.
-            </p>
-          </article>
-          <article class="section-card rounded-3xl p-8">
-            <h2 class="mb-3 text-2xl font-bold text-brand-dark">Ventes</h2>
-            <p class="leading-7 text-brand-dark/80">
-              Des food trucks prêt à l’emploi, pensés pour un fonctionnement simple, rapide et rentable.
-            </p>
-          </article>
-          <article class="section-card rounded-3xl p-8">
-            <h2 class="mb-3 text-2xl font-bold text-brand-dark">Partenariats</h2>
-            <p class="leading-7 text-brand-dark/80">
-              Un réseau d’acteurs pour accompagner votre croissance et faire rayonner votre activité mobile.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="location" class="mx-auto max-w-7xl px-6 py-8">
-        <div class="section-card rounded-[2rem] p-8 md:p-12">
-          <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+      <section class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+        <div class="reveal glass-card rounded-[2rem] p-8 md:p-10">
+          <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-green">Locations</p>
-              <h2 class="mb-4 text-3xl font-bold text-brand-dark">Un service mobile pensé pour vos événements</h2>
+              <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-green">Pourquoi choisir To Eat In Simplicity ?</p>
+              <h2 class="mb-4 text-3xl font-bold text-brand-dark">Une vision claire, un projet mobile premium.</h2>
               <p class="leading-8 text-brand-dark/80">
-                To Eat In Simplicity vous accompagne dans la mise en place d’un espace de restauration mobile efficace, esthétique et prêt à séduire vos clients.
+                Nous aidons à transformer une idée de restauration mobile en une réelle opportunité commerciale, grâce à des solutions modernes, élégantes et pensées pour la performance opérationnelle.
               </p>
             </div>
-            <div class="rounded-3xl bg-gradient-to-br from-brand-green/90 to-brand-yellow/80 p-8 text-white">
-              <h3 class="mb-3 text-xl font-semibold">Pourquoi choisir To Eat In Simplicity ?</h3>
-              <ul class="list-disc space-y-2 pl-5 leading-7">
-                <li>Installation rapide</li>
-                <li>Design moderne</li>
-                <li>Solution clé en main</li>
+            <div class="rounded-3xl bg-gradient-to-br from-brand-green to-brand-yellow p-8 text-white">
+              <ul class="space-y-3 leading-7">
+                <li>• Design soigné et impact visuel fort</li>
+                <li>• Installation rapide pour les événements et les lieux de vente</li>
+                <li>• Adaptation aux besoins des restaurateurs et investisseurs</li>
+                <li>• Une approche simple, fiable et orientée résultat</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="vente" class="mx-auto max-w-7xl px-6 py-8">
-        <div class="section-card rounded-[2rem] p-8 md:p-12">
-          <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-            <div class="rounded-3xl bg-brand-dark p-8 text-white">
-              <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-yellow">Ventes</p>
-              <h2 class="mb-4 text-3xl font-bold">Des unités commercialisables</h2>
-              <p class="leading-8 text-slate-200">
-                Chaque solution est pensée to be profitable, robuste et prête à accueillir votre activité au quotidien.
-              </p>
+      <section id="solutions" class="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+        <div class="mb-8 max-w-3xl">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-green">Nos solutions</p>
+          <h2 class="text-3xl font-bold text-brand-dark">Des offres pensées pour chaque étape du projet</h2>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <article class="reveal hover-rise rounded-[1.5rem] border border-black/5 bg-white p-7 shadow-sm">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-green">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 12h8m-8 5h8" />
+              </svg>
             </div>
-            <div>
-              <h3 class="mb-4 text-2xl font-semibold text-brand-dark">Un modèle adapté à votre business</h3>
-              <p class="leading-8 text-brand-dark/80">
-                Que vous soyez restaurateur, investisseur ou entrepreneur, vous pouvez compter sur une approche claire, simple et orientée résultats.
-              </p>
+            <h3 class="mb-2 text-xl font-semibold text-brand-dark">Location</h3>
+            <p class="leading-7 text-brand-dark/75">Des unités parfaitement adaptées aux événements, festivals et emplacements temporaires.</p>
+          </article>
+          <article class="reveal hover-rise rounded-[1.5rem] border border-black/5 bg-white p-7 shadow-sm">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow/20 text-brand-dark">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M7 8h10M7 16h10" />
+              </svg>
+            </div>
+            <h3 class="mb-2 text-xl font-semibold text-brand-dark">Vente</h3>
+            <p class="leading-7 text-brand-dark/75">Des food trucks et remorques conçus pour un usage durable et opérationnel au quotidien.</p>
+          </article>
+          <article class="reveal hover-rise rounded-[1.5rem] border border-black/5 bg-white p-7 shadow-sm">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-green">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h2a2 2 0 002-2V8m-6 12V4m-6 16h2a2 2 0 002-2V8" />
+              </svg>
+            </div>
+            <h3 class="mb-2 text-xl font-semibold text-brand-dark">Partenariats</h3>
+            <p class="leading-7 text-brand-dark/75">Un réseau solide pour accélérer votre développement et structurer vos projets.</p>
+          </article>
+          <article class="reveal hover-rise rounded-[1.5rem] border border-black/5 bg-white p-7 shadow-sm">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow/20 text-brand-dark">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01" />
+              </svg>
+            </div>
+            <h3 class="mb-2 text-xl font-semibold text-brand-dark">Accompagnement</h3>
+            <p class="leading-7 text-brand-dark/75">Un soutien de bout en bout pour présenter votre offre et la rendre plus attractive.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div class="reveal glass-card rounded-[2rem] p-8 md:p-10">
+            <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-green">À propos</p>
+            <h2 class="mb-4 text-3xl font-bold text-brand-dark">Une agence de vente et de développement au service du terrain.</h2>
+            <p class="leading-8 text-brand-dark/80">
+              Nous combinons la vision du terrain, la compréhension des besoins des clients et une approche commerciale claire pour valoriser les projets de restauration mobile.
+            </p>
+          </div>
+          <div class="reveal rounded-[2rem] bg-brand-dark p-8 text-white md:p-10">
+            <h3 class="mb-5 text-2xl font-semibold">Ce que nous mettons en avant</h3>
+            <div class="space-y-4 leading-7 text-slate-200">
+              <div class="rounded-2xl border border-white/10 bg-white/10 p-4">Design premium et cohérence du concept</div>
+              <div class="rounded-2xl border border-white/10 bg-white/10 p-4">Équilibre entre esthétique, sécurité et efficacité</div>
+              <div class="rounded-2xl border border-white/10 bg-white/10 p-4">Communication forte pour mieux vendre et mieux exposer</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="partenariat" class="mx-auto max-w-7xl px-6 py-8">
-        <div class="section-card rounded-[2rem] p-8 md:p-12">
-          <h2 class="mb-4 text-3xl font-bold text-brand-dark">Partenariats & réseau</h2>
-          <p class="max-w-3xl leading-8 text-brand-dark/80">
-            Nous accompagnons les projets de restauration mobile avec des partenaires fiables et une approche concrète, orientée vers la réussite d’un projet durable.
-          </p>
+      <section id="gallery" class="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+        <div class="mb-8 max-w-3xl">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-green">Galerie</p>
+          <h2 class="text-3xl font-bold text-brand-dark">Un univers visuel pensé pour marquer les esprits</h2>
         </div>
-      </section>
-
-      <section id="agence" class="mx-auto max-w-7xl px-6 py-8">
-        <div class="section-card rounded-[2rem] p-8 md:p-12">
-          <h2 class="mb-4 text-3xl font-bold text-brand-dark">Agence de vente</h2>
-          <p class="max-w-3xl leading-8 text-brand-dark/80">
-            Notre équipe vous aide à structurer votre offre, à mieux présenter votre activité et à accélérer vos opportunités de développement.
-          </p>
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <article class="reveal overflow-hidden rounded-[1.5rem] bg-white shadow-sm">
+            <img src="images/backgroundHero.png" alt="Vue de food truck moderne" class="h-56 w-full object-cover" onerror="this.style.display='none'" />
+            <div class="p-6">
+              <h3 class="mb-2 text-xl font-semibold text-brand-dark">Événements & pop-up</h3>
+              <p class="leading-7 text-brand-dark/75">Une présence forte qui s’adapte à chaque lieu et à chaque besoin d’animation.</p>
+            </div>
+          </article>
+          <article class="reveal overflow-hidden rounded-[1.5rem] bg-white shadow-sm">
+            <div class="flex h-56 items-center justify-center bg-gradient-to-br from-brand-green/20 via-brand-yellow/20 to-white">
+              <img src="images/logoTEIS.png" alt="Logo To Eat In Simplicity" class="h-24 w-24 object-contain" />
+            </div>
+            <div class="p-6">
+              <h3 class="mb-2 text-xl font-semibold text-brand-dark">Image de marque</h3>
+              <p class="leading-7 text-brand-dark/75">Une identité visuelle claire, moderne et mémorable pour valoriser vos projets.</p>
+            </div>
+          </article>
+          <article class="reveal overflow-hidden rounded-[1.5rem] bg-white shadow-sm">
+            <div class="flex h-56 items-center justify-center bg-gradient-to-br from-brand-dark to-brand-green p-6 text-center text-white">
+              <p class="text-2xl font-semibold leading-10">Mobilité, impact et performance à chaque étape.</p>
+            </div>
+            <div class="p-6">
+              <h3 class="mb-2 text-xl font-semibold text-brand-dark">Projet complet</h3>
+              <p class="leading-7 text-brand-dark/75">Une approche cohérente qui relie design, usage et développement commercial.</p>
+            </div>
+          </article>
         </div>
       </section>
     </main>
 
-    <section id="contact" class="mx-auto max-w-7xl px-6 py-16">
-      <div class="rounded-[2rem] bg-brand-dark p-8 text-white md:p-12">
-        <h2 class="mb-4 text-3xl font-bold">Prêt à développer votre projet ?</h2>
-        <p class="mb-6 max-w-2xl leading-8 text-slate-200">
-          Contactez-nous pour discuter de vos besoins en locations, ventes ou partenariats autour de la restauration mobile.
-        </p>
-        <a href="mailto:contact@toeatinsimplicity.com" class="inline-flex rounded-full bg-brand-yellow px-6 py-3 font-semibold text-brand-dark">
-          contact@toeatinsimplicity.com
-        </a>
+    <section id="contact" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div class="reveal rounded-[2rem] bg-brand-dark p-8 text-white md:p-12">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-2xl">
+            <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-brand-yellow">Contact</p>
+            <h2 class="mb-4 text-3xl font-bold">Prêt à faire décoller votre projet ?</h2>
+            <p class="leading-8 text-slate-200">
+              Discutons de vos besoins autour de la location, de la vente, du partenariat ou de l’accompagnement de votre offre mobile.
+            </p>
+          </div>
+          <a href="mailto:contact@toeatinsimplicity.com" class="inline-flex rounded-full bg-brand-yellow px-6 py-3 font-semibold text-brand-dark transition hover:opacity-90">
+            contact@toeatinsimplicity.com
+          </a>
+        </div>
       </div>
     </section>
 
@@ -213,13 +298,30 @@
     </footer>
 
     <script>
-      const button = document.getElementById('menuButton');
-      const menu = document.getElementById('mobileMenu');
-      if (button && menu) {
-        button.addEventListener('click', () => {
-          menu.classList.toggle('hidden');
+      const menuButton = document.getElementById('menuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('hidden');
+          menuButton.setAttribute('aria-expanded', String(!isOpen));
         });
       }
+
+      const revealItems = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      revealItems.forEach((item) => observer.observe(item));
     </script>
   </body>
 </html>
