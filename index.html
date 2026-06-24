@@ -100,6 +100,7 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>
@@ -340,14 +341,14 @@
                 <a href="#home" aria-label="Retour à l'accueil"><Logo /></a>
                 <nav className="hidden items-center md:space-x-4 lg:space-x-8 md:flex">
                   {navLinks.map((link) => (
-                    <a key={link.name} href={link.href} className={`md:text-xs lg:text-sm font-semibold transition-colors duration-300 ${activeSection === link.href ? 'text-brand-green' : useDarkText ? 'text-brand-dark' : 'text-white'}`}>
+                    <a key={link.name} href={link.href} className={`md:text-xs lg:text-sm font-semibold transition-colors duration-300 ${activeSection === link.href ? 'text-brand-green' : useDarkText ? 'text-brand-dark hover:text-brand-green' : 'text-white hover:text-brand-yellow'}`}>
                       {link.name}
                     </a>
                   ))}
                 </nav>
                 <div className="hidden md:inline-block">
                   <MagneticWrapper mouseX={mousePosition.x} mouseY={mousePosition.y} magnetStrength={0.2} easeFactor={0.1}>
-                      <a href="#contact" className="block rounded-lg bg-brand-green md:py-1.5 md:px-3 lg:py-2.5 lg:px-5 md:text-xs lg:text-sm font-bold text-white shadow-md transition-all duration-300 hover:shadow-lg">
+                      <a href="#contact" className="block rounded-lg bg-brand-green md:py-1.5 md:px-3 lg:py-2.5 lg:px-5 md:text-xs lg:text-sm font-bold text-white shadow-md transition-all duration-300 hover:bg-opacity-90 hover:shadow-lg">
                           Contactez-nous
                       </a>
                   </MagneticWrapper>
@@ -367,7 +368,7 @@
                         key={link.name} 
                         href={link.href} 
                         onClick={() => setIsOpen(false)} 
-                        className={`block text-center font-semibold transition-all duration-300 ease-in-out ${activeSection === link.href ? 'text-brand-green' : 'text-brand-dark hover:text-brand-green'}`}
+                        className={`block text-center font-semibold transition-all duration-300 ease-in-out ${activeSection === link.href ? 'text-brand-green' : 'text-brand-dark hover:text-brand-green'} ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
                         style={{ transitionDelay: `${isOpen ? 100 + index * 50 : 0}ms` }}
                         >
                         {link.name}
@@ -377,7 +378,7 @@
                       className={`pt-4 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
                       style={{ transitionDelay: `${isOpen ? 100 + navLinks.length * 50 : 0}ms` }}
                      >
-                        <a href="#contact" onClick={() => setIsOpen(false)} className="block w-full max-w-xs mx-auto text-center rounded-lg bg-brand-green py-2.5 px-5 text-sm font-bold text-white shadow-md hover:shadow-lg transition-all">
+                        <a href="#contact" onClick={() => setIsOpen(false)} className="block w-full max-w-xs mx-auto text-center rounded-lg bg-brand-green py-2.5 px-5 text-sm font-bold text-white shadow-md transition-all duration-300 hover:bg-opacity-90 hover:shadow-lg">
                             Contactez-nous
                         </a>
                      </div>
@@ -484,16 +485,16 @@
                         ))}
                     </div>
                     
-                    <button onClick={goToPrevious} className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/50 group-hover:bg-white/80 p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100 z-10" aria-label="Image précédente">
+                    <button onClick={goToPrevious} className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/50 group-hover:bg-white/80 p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-brand-green z-10" aria-label="Image précédente">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-brand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                     </button>
-                    <button onClick={goToNext} className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/50 group-hover:bg-white/80 p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100 z-10" aria-label="Image suivante">
+                    <button onClick={goToNext} className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/50 group-hover:bg-white/80 p-2 rounded-full transition-opacity opacity-0 group-hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-brand-green z-10" aria-label="Image suivante">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-brand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                     </button>
 
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
                         {images.map((_, slideIndex) => (
-                            <button key={slideIndex} onClick={(e) => goToSlide(slideIndex, e)} className={`w-2.5 h-2.5 rounded-full transition-colors ${currentIndex === slideIndex ? 'bg-brand-green' : 'bg-white/60'}`} aria-label={`Aller à l'image ${slideIndex + 1}`}></button>
+                            <button key={slideIndex} onClick={(e) => goToSlide(slideIndex, e)} className={`w-2.5 h-2.5 rounded-full transition-colors ${currentIndex === slideIndex ? 'bg-brand-green' : 'bg-white/60 hover:bg-white'}`} aria-label={`Aller à l'image ${slideIndex + 1}`}></button>
                         ))}
                     </div>
                 </div>
@@ -521,10 +522,10 @@
                     </h2>
                     <div className="mt-6 text-base leading-8 text-slate-600 space-y-6">
                       <p>
-                        Né en 2021 en pleine crise sanitaire, le concept « To eat in simplicity » a été créé pour offrir une solution accessible et efficace aux restaurateurs. Face aux coûts élevés des locaux, nous avons pensé la remorque Food Truck comme un outil de travail innovant et performant.
+                        Né en 2021 en pleine crise sanitaire, le concept « To eat in simplicity » a été créé pour offrir une solution accessible et efficace aux restaurateurs. Face aux coûts élevés et à la complexité des systèmes de vente à emporter, nous avons imaginé une alternative : des Food Trucks optimisés pour votre succès.
                       </p>
                       <p>
-                        Que vous soyez un jeune entrepreneur, un restaurateur souhaitant se diversifier, ou une société en quête de nouveauté, votre remorque Food Truck sera le partenaire idéal pour développer votre activité en toute flexibilité.
+                        Que vous soyez un jeune entrepreneur, un restaurateur souhaitant se diversifier, ou une société en quête de nouveauté, votre remorque Food Truck sera le partenaire idéal pour votre réussite.
                       </p>
                     </div>
                 </div>
@@ -555,7 +556,7 @@
                   <p className="text-slate-600 text-center">Notre nombreux parc de remorque Food truck se compose de Glacier, pizza, snack ou encore pâtisserie.</p>
                   <div className="p-6 bg-white rounded-2xl shadow-lg">
                     <h3 className="text-xl font-bold text-brand-dark mb-3">Équipements inclus :</h3>
-                    <p className="text-slate-600">Meuble réfrigéré 3 portes, plancha induction, hotte aspirante, friteuse, grill panini, machine à jus et bien d'autres ! Rangement optimisé pour une utilisation ergonomique.</p>
+                    <p className="text-slate-600">Meuble réfrigéré 3 portes, plancha induction, hotte aspirante, friteuse, grill panini, machine à jus et bien d'autres ! Rangement optimisé pour un espace fonctionnel intérieur entièrement inox.</p>
                   </div>
                    <div className="p-6 bg-white rounded-2xl shadow-lg">
                     <h3 className="text-xl font-bold text-brand-dark mb-3">Tarifs</h3>
@@ -614,7 +615,7 @@
                             Grandissons Ensemble
                         </h2>
                         <p className={`mt-6 text-base text-slate-600 transition-all duration-500 delay-100 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                            Rejoignez l'aventure 'To Eat In Simplicity' en devenant l'un de nos partenaires privilégiés. Nous sommes toujours à la recherche de collaborations fructueuses pour étendre notre réseau.
+                            Rejoignez l'aventure 'To Eat In Simplicity' en devenant l'un de nos partenaires privilégiés. Nous sommes toujours à la recherche de collaborations fructueuses pour étendre notre réseau et offrir le meilleur à nos clients. Contactez-nous pour découvrir les opportunités.
                         </p>
                     </div>
                 </div>
@@ -626,7 +627,7 @@
       const Agence = () => {
         const [ref, isInView] = useInView({ threshold: 0.2 });
         const FeatureCard = ({ icon, title, delay, isInView }) => (
-          <div className={`bg-white p-5 rounded-2xl shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: delay }}>
+          <div className={`bg-white p-5 rounded-2xl shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{transitionDelay: delay}}>
               <div className="flex items-center gap-4">
                   <div className="bg-brand-green/10 text-brand-green w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
                       {icon}
@@ -649,10 +650,10 @@
                   </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <FeatureCard title="Kit de communication" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>} isInView={isInView} delay="0ms" />
-                <FeatureCard title="Formation" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5m0 0l9 5m-9-5v10l9 5m-9-5l-9 5m18-10l9 5m-9-5v10m0-5l9 5m-11-5l2-1m-2 1l-2-1" /></svg>} isInView={isInView} delay="100ms" />
-                <FeatureCard title="Développement réseaux" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10a3 3 0 11-6 0 3 3 0 016 0zM6 20a6 6 0 0112 0v2H6v-2z" /></svg>} isInView={isInView} delay="200ms" />
-                <FeatureCard title="Contrat d'agent & exclusivité" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>} isInView={isInView} delay="300ms" />
+                <FeatureCard title="Kit de communication" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3h2m-4 3H9m-4 10v-2m-2 2h2" /></svg>} isInView={isInView} delay="0ms" />
+                <FeatureCard title="Formation" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4-2.222V20" /></svg>} isInView={isInView} delay="200ms" />
+                <FeatureCard title="Développement réseaux" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>} isInView={isInView} delay="400ms" />
+                <FeatureCard title="Contrat d'agent & exclusivité" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>} isInView={isInView} delay="600ms" />
               </div>
             </div>
           </section>
@@ -664,7 +665,7 @@
         const TestimonialCard = ({ quote, author, role, delay, isInView }) => (
             <figure className={`bg-white p-6 rounded-2xl shadow-lg transition-all duration-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: delay }}>
                 <blockquote className="text-slate-700">
-                    <p className="font-serif text-lg italic">"{quote}"</p>
+                    <p className="font-serif text-lg italic">“{quote}”</p>
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center text-white font-bold text-base">
@@ -720,7 +721,7 @@
                   <input
                       type={type} name={name} id={id} placeholder={placeholder} required={required} value={value} onChange={onChange}
                       aria-required={required}
-                      className="block w-full rounded-md border-0 px-3.5 py-1.5 text-brand-dark shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-brand-green"
+                      className="block w-full rounded-md border-0 px-3.5 py-1.5 text-brand-dark shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-brand-green sm:text-xs sm:leading-6 transition-all"
                   />
               </div>
           </div>
@@ -787,13 +788,13 @@
                                 <div className="sm:col-span-2">
                                     <label htmlFor="message" className="block text-xs font-semibold leading-6 text-brand-dark">Message <span className="text-brand-green">*</span></label>
                                     <div className="mt-2.5">
-                                        <textarea name="message" id="message" rows="4" placeholder="Décrivez-nous votre projet..." required value={formState.message} onChange={handleChange} aria-required className="block w-full rounded-md border-0 px-3.5 py-1.5 text-brand-dark shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-brand-green"></textarea>
+                                        <textarea name="message" id="message" rows="4" placeholder="Décrivez-nous votre projet..." required value={formState.message} onChange={handleChange} aria-required="true" className="block w-full rounded-md border-0 px-3.5 py-2 text-brand-dark shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-brand-green sm:text-xs sm:leading-6 transition-all"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div className="mt-10 flex justify-center">
                                 <MagneticWrapper mouseX={mousePosition.x} mouseY={mousePosition.y} magnetStrength={0.2} easeFactor={0.1}>
-                                    <button type="submit" className="block rounded-lg bg-brand-green py-3 px-6 text-base font-bold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
+                                    <button type="submit" className="block rounded-lg bg-brand-green py-3 px-6 text-base font-bold text-white shadow-lg transition-all duration-300 hover:bg-opacity-90 hover:shadow-xl hover:scale-105">
                                         Envoyer la demande
                                     </button>
                                 </MagneticWrapper>
@@ -816,7 +817,7 @@
                 </p>
                 <div className="mt-10 flex justify-center">
                     <MagneticWrapper mouseX={mousePosition.x} mouseY={mousePosition.y} magnetStrength={0.2} easeFactor={0.1}>
-                        <a href="#contact" className="block rounded-lg bg-brand-green py-3 px-6 text-base font-bold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
+                        <a href="#contact" className="block rounded-lg bg-brand-green py-3 px-6 text-base font-bold text-white shadow-lg transition-all duration-300 hover:bg-opacity-90 hover:shadow-xl hover:scale-105">
                             Prendre contact
                         </a>
                     </MagneticWrapper>
@@ -867,15 +868,15 @@
                   <div className="flex flex-col md:flex-row justify-between md:items-end mt-4">
                       <div className="space-y-4">
                         <a href="mailto:toeatinsimplicity@gmail.com" className="flex items-center text-slate-300 transition-colors duration-300 hover:text-brand-green">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                           <span>toeatinsimplicity@gmail.com</span>
                         </a>
                         <div className="flex items-center space-x-4 pt-2">
                           <SocialIconLink href="https://www.facebook.com/toeatinsimplicity" aria-label="Facebook">
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fillRule="evenodd" /></svg>
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" /></svg>
                           </SocialIconLink>
                           <SocialIconLink href="https://www.instagram.com/sas_to_eat_in_simplicity/" aria-label="Instagram">
-                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" fillRule="evenodd" /></svg>
+                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218 1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm5.25-8.25a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z" clipRule="evenodd" /></svg>
                           </SocialIconLink>
                         </div>
                       </div>
@@ -947,68 +948,125 @@
                   Conditions Générales de Vente
                 </h1>
                 <Article title="ARTICLE 1 – Champ d'application">
-                  <p>Les présentes conditions générales de vente s'appliquent à toutes les transactions commerciales.</p>
+                  <p>Les présentes conditions générales de vente constituent, conformément à l'article L 441-6 du Code de commerce, le socle unique de la relation commerciale entre les Parties. Elle visent à définir les droits et obligations de la société SARL TO EAT IN SIMPLICITY (ci-après le « Vendeur ») vis à vis de ses Acheteurs (ci-après l' « Acheteur ») dans le cadre de la vente par le Vendeur de cellules de food-truck fabriquées et personnalisées à la demande de l'Acheteur (ci-après les « Produits »). Les présentes Conditions Générales de Vente seront applicables à tout contrat conclu entre le Vendeur et l'Acheteur ayant pour objet la fourniture de Produits. Le Vendeur assure notamment la commercialisation des biens susmentionnés par l'intermédiaire du site https://www.leboncoin.fr/ et du site https://www.toeatinsimplicity.com/ . Tout autre document que les présentes Conditions Générales de Vente et notamment catalogues, prospectus, publicités, notices, n'a qu'une valeur informative et indicative, non contractuelle.</p>
                 </Article>
                 <Article title="ARTICLE 2 - Commande et devis">
-                  <p>Toute commande doit être passée par écrit.</p>
+                  <p>Toute commande et demande de devis, pour être prise en compte, doit être passée par écrit ou communiquée par télécopie ou courrier électronique au Vendeur. Afin de pouvoir déterminer les besoins de l'Acheteur, un devis est systématiquement adressé à l'Acheteur en double exemplaire. Le devis détermine avec précision l'ensemble des éléments à intégrer au Food Truck et le Vendeur s'assure de la disponibilité des Produits demandés.</p>
+                  <p>Afin de confirmer la commande, l'Acheteur apposera sur l'un des exemplaires du devis la mention « Bon pour accord » et apposera sa signature sur ce document. Dès sa réception et la réception d'un acompte dont le montant est fixé à l'article 5., elle présente un caractère irrévocable. Le bénéfice de la commande est personnel à l'Acheteur et ne peut être transmis à un tiers sans l'accord de la société.</p>
+                  <p>Les Produits sont fournis aux tarifs du Vendeur en vigueur au jour de la passation de la commande, et, le cas échéant, dans la proposition commerciale spécifique adressée à l'Acheteur. Ces tarifs sont fermes et non révisables pendant leur période de validité, telle qu'indiquée le Vendeur.</p>
+                  <p>Des conditions tarifaires particulières peuvent être pratiquées en fonction des spécificités demandées par l'Acheteur concernant, notamment, les modalités et délais de livraison, ou les délais et conditions de règlement. Une offre commerciale particulière sera alors adressée à l'Acheteur par le Vendeur.</p>
+                  <p>En cas d'annulation de la commande par l'Acheteur après son acceptation par le Vendeur, pour quelque raison que ce soit, l'acompte versé à la commande, tel que défini à l'article 5 des présentes Conditions Générales de Vente sera de plein droit acquis au Vendeur et ne pourra donner lieu à un quelconque remboursement.</p>
+                </Article>
+                 <Article title="ARTICLE 3 - Livraison">
+                    <p>Le Vendeur adressera à l'Acheteur un avis de mise à disposition du véhicule. Cette communication sera réalisée par le Vendeur par écrit, et notamment par courriel, télécopie ou courrier recommandé avec accusé de réception. Sauf conditions particulières expresses propres à la vente, la livraison s'effectuera au magasin principal du Vendeur, à la date prévue entre les Parties à la réception par le Vendeur d'une commande en bonne et due forme.</p>
+                    <p>En toute hypothèse, la livraison dans le délai ne peut intervenir que si l'Acheteur est à jour de toutes ses obligations à l'égard du Vendeur. Aucune livraison ne sera opérée tant que le règlement intégral du prix de vente n'aura pas été effectué par l'Acheteur.</p>
+                    <p>Le délai indiqué est en outre de plein droit suspendu par tout événement indépendant du contrôle du Vendeur et ayant pour conséquence de retarder la livraison.</p>
+                </Article>
+                <Article title="ARTICLE 4 – Réception des Produits">
+                    <p>L'Acheteur prendra réception des Produits commandés au magasin principal du Vendeur, dans le délai de 10 jours à compter de la réception de l'avis de mise à disposition adressé par le Vendeur, dès livraison des Produits. La réception des Produits donnera lieu à l'établissement d'un procès-verbal de livraison contradictoire dûment signé par les deux parties.</p>
+                    <p>Passé ce délai, le Vendeur pourra de plein droit résilier la vente, si bon lui semble, sans mise en demeure préalable, en application des dispositions de l'article 1657 du Code civil. L'Acheteur assumera les frais et risques du transport des Produits vendus, postérieurement à leur livraison. L'Acheteur doit vérifier à la réception la conformité des Produits livrés aux Produits commandés et l'absence de vice apparent.</p>
+                    <p>Si aucune réclamation ni réserve n'est formulée à ce titre par l'Acheteur au jour de la réception des Produits, lesdits Produits ne pourront plus être ni repris ni échangés, en application des dispositions de l'article 1642 du Code civil. En cas de vice apparent ou de non-conformité des Produits livrés aux Produits commandés relevés par l'Acheteur au jour de la réception, le Vendeur s'oblige au remplacement des Produits livrés par des produits neufs et identiques à la commande.</p>
+                </Article>
+                <Article title="ARTICLE 5 - Prix">
+                    <p>Sauf conditions particulières expresses propres à la vente, les prix des Produits vendus sont ceux figurant sur le devis. Ces prix sont, à cette date, fermes et définitifs. Ils sont exprimés en monnaie légale et stipulés hors taxes.</p>
+                    <p>Un acompte correspondant à 50 % du prix total d'acquisition des Produits susvisés est exigé lors de la passation de la commande. Le solde du prix est payable au comptant au plus tard au jour de la livraison.</p>
+                    <p>Le Vendeur ne sera pas tenu de procéder à la livraison des Produits commandés par l'Acheteur si celui-ci ne lui en paye pas le prix dans les conditions et selon les modalités ci-dessus indiquées.</p>
+                    <p>Le Vendeur établira, dès réception de la commande, une facture en double exemplaire, dont l'un sera délivré le jour même à l'Acheteur. La facture mentionnera les indications visées à l'article L. 441-9 du Code de commerce.</p>
+                </Article>
+                <Article title="ARTICLE 6 – Réserve de propriété">
+                    <p>Les Produits sont vendus sous réserve de propriété. Le Vendeur conserve la propriété des Produits jusqu'au paiement complet et effectif du prix par l'Acheteur.</p>
+                    <p>En cas de défaut de paiement à son échéance, le Vendeur pourra revendiquer les Produits et résilier la vente. Les chèques ne sont considérés comme des paiements qu'à compter de leur encaissement effectif.</p>
+                </Article>
+                <Article title="ARTICLE 7 - Garantie">
+                  <p>Les Produits vendus sont couverts par la garantie légale des vices cachés, au sens de l'article 1641 du Code civil. En cas d'existence d'un vice caché, l'Acheteur s'engage à en informer le Vendeur dans un délai de 5 jours ouvrés à compter de sa découverte. A défaut de respecter ces délais de prévenance, l'Acheteur perdra tout droit de se prévaloir de la non-conformité et/ou du vice caché à l'encontre du Vendeur.</p>
+                  <p>L'Acheteur s'engage à prendre toutes mesures nécessaires pour limiter son préjudice. Toute garantie est exclue en cas de mauvaise utilisation, négligence ou défaut d'entretien de la part de l'Acheteur, comme en cas d'usure normale du Produit ou de force majeure. La garantie enfin, ne peut intervenir si les Produits ont fait l'objet d'un usage anormal, ou ont été employés dans des conditions différentes de celles pour lesquelles ils ont été fabriqués, en particulier en cas de non-respect des conditions prescrites dans la notice d'utilisation.</p>
+                  <p>La garantie donnée en application des dispositions des articles 1641 et suivants du Code Civil est également exclue lorsque la vente aura été conclue entre professionnels. L'Acheteur professionnel prendra en effet possession des produits, sous réserve des déclarations faites et consignées dans le procès-verbal de réception, dans l'état où il se trouve, sans garantie de la part du vendeur en raison des vices apparents ou cachés, s'ils existent et qui pourraient affectés les produits. Le VENDEUR sera néanmoins tenu à la garantie des vices cachés s'il est prouvé qu'il n'a pas révélé des vices cachés connus de lui.</p>
+                </Article>
+                <Article title="ARTICLE 8 - Résolution du contrat">
+                    <p>Il est expressément entendu que la résolution pour manquement d'une partie à ses obligations aura lieu de plein droit, la mise en demeure résultant du seul fait de l'inexécution de l'obligation, sans sommation, ni exécution de formalités. Les prestations échangées entre les Parties depuis la conclusion du contrat et jusqu'à sa résolution ne pouvant trouver leur utilité que par l'exécution complète de celui-ci, elles donneront lieu à restitution intégrale.</p>
+                </Article>
+                <Article title="ARTICLE 9 – Imprévision">
+                    <p>Les présentes Conditions Générales de Vente excluent expressément le régime légal de l'imprévision prévu à l'article 1195 du Code civil pour toutes les opérations de Vente de Produits du Fournisseur à l'Acheteur. Le Fournisseur et l'Acheteur renoncent donc chacun à se prévaloir des dispositions de l'article 1195 du Code civil et du régime de l'imprévision qui y est prévu, s'engageant à assumer ses obligations même si l'équilibre contractuel se trouve bouleversé par des circonstances qui étaient imprévisibles lors de la conclusion de la vente, quand bien même leur exécution s'avèrerait excessivement onéreuse et à en supporter toutes les conséquences économiques et financières.</p>
+                </Article>
+                <Article title="ARTICLE 10 - Nullité d'une Clause">
+                    <p>Si l'une quelconque des dispositions des présentes Conditions Générales de Vente était annulée, cette nullité n'entraînerait pas la nullité des autres dispositions desdites Conditions qui demeureront en vigueur entre les Parties.</p>
+                </Article>
+                <Article title="ARTICLE 11 - Modification des Conditions Générales de Vente">
+                    <p>Tout amendement, résiliation ou abandon de l'une quelconque des clauses des présentes Conditions ne sera valable qu'après accord écrit et signé entre les Parties.</p>
+                </Article>
+                <Article title="ARTICLE 12 - Non-renonciation">
+                    <p>Le fait pour l'une des Parties de ne pas se prévaloir d'un engagement par l'autre Partie à l'une quelconque des obligations visées par les présentes, ne saurait être interprété pour l'avenir comme une renonciation à l'obligation en cause. Toutefois, conformément à l'article 2, l'acompte versé à la commande, tel que défini à l'article 5 des présentes Conditions Générales de Vente sera de plein droit acquis au Vendeur et ne pourra donner lieu à un quelconque remboursement à condition que l'annulation de la commande soit réalisé par l'Acheteur après son acceptation par le Vendeur, pour quelque raison que ce soit.</p>
+                </Article>
+                <Article title="ARTICLE 13 – Loi applicable et juridiction compétente">
+                    <p>Les présentes conditions générales de vente seront régies par la loi française. Tout différent relatif à l'interprétation et à l'exécution de ventes des Produits sera de la compétence exclusive du tribunal de commerce d'Epinal. Le Vendeur élit domicile à l'adresse de son siège social.</p>
+                </Article>
+                <Article title="ARTICLE 14 - Acceptation de l'Acheteur">
+                    <p>Les présentes conditions générales de vente sont expressément agréées et acceptées par l'Acheteur, qui déclare et reconnaît en avoir une parfaite connaissance, et renonce, de ce fait, à se prévaloir de tout document contradictoire et, notamment, ses propres conditions générales d'achat.</p>
                 </Article>
               </div>
             </section>
           </main>
         );
-      };
+      }
 
-      // --- App Root Component ---
       const App = () => {
-        const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
-        const [route, setRoute] = React.useState(window.location.hash || '#home');
+        const [mousePosition, setMousePosition] = useState({ x: null, y: null });
+        const [route, setRoute] = useState(window.location.hash || '#home');
 
-        React.useEffect(() => {
-          const handleMouseMove = (e) => setMousePosition({ x: e.clientX, y: e.clientY });
+        useEffect(() => {
+          const handleMouseMove = (event) => setMousePosition({ x: event.clientX, y: event.clientY });
           window.addEventListener('mousemove', handleMouseMove);
-          return () => window.removeEventListener('mousemove', handleMouseMove);
-        }, []);
-
-        React.useEffect(() => {
-          const handleHashChange = () => setRoute(window.location.hash || '#home');
+          
+          const handleHashChange = () => {
+            setRoute(prevRoute => {
+                const newRoute = window.location.hash || '#home';
+                const isNewRouteHomePage = !newRoute.startsWith('#contact') && !newRoute.startsWith('#cgv');
+                const isPrevRouteHomePage = !prevRoute.startsWith('#contact') && !prevRoute.startsWith('#cgv');
+                if (isNewRouteHomePage !== isPrevRouteHomePage) {
+                  window.scrollTo(0, 0);
+                }
+                return newRoute;
+            });
+          };
           window.addEventListener('hashchange', handleHashChange);
-          return () => window.removeEventListener('hashchange', handleHashChange);
+
+          if (route.startsWith('#contact') || route.startsWith('#cgv')) {
+              window.scrollTo(0, 0);
+          }
+
+          return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('hashchange', handleHashChange);
+          };
         }, []);
 
-        React.useEffect(() => {
-          document.body.classList.add('loaded');
-        }, []);
+        const renderPage = () => {
+            if (route.startsWith('#contact')) {
+                return <ContactPage mousePosition={mousePosition} />;
+            }
+            if (route.startsWith('#cgv')) {
+                return <CGVPage />;
+            }
+            return <HomePage mousePosition={mousePosition} currentHash={route} />;
+        };
 
-        if (route.startsWith('#contact')) {
-          return (
-            <>
-              <Header mousePosition={mousePosition} route={route} />
-              <ContactPage mousePosition={mousePosition} />
-              <Footer />
-            </>
-          );
-        }
-        if (route.startsWith('#cgv')) {
-          return (
-            <>
-              <Header mousePosition={mousePosition} route={route} />
-              <CGVPage />
-              <Footer />
-            </>
-          );
-        }
         return (
-          <>
+          <div className="bg-brand-light text-brand-dark font-sans overflow-x-hidden">
             <Header mousePosition={mousePosition} route={route} />
-            <HomePage mousePosition={mousePosition} currentHash={route} />
+            {renderPage()}
             <Footer />
-          </>
+          </div>
         );
       };
 
-      // Render l'app dans le DOM
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<App />);
+      const rootElement = document.getElementById('root');
+      if (!rootElement) throw new Error("Could not find root element to mount to");
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(<React.StrictMode><App /></React.StrictMode>);
+      
+      document.body.classList.add('loaded');
+
     </script>
-  </body>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>
